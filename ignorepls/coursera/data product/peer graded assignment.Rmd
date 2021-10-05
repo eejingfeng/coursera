@@ -1,0 +1,35 @@
+---
+title: 'Peer-graded Assignment: R Markdown and Leaflet'
+author: "JF Ee"
+date: "6/18/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 18 June 2021
+
+### Importing leaflet library
+```{r}
+library(leaflet)
+```
+
+### Creating map
+
+```{r}
+nusIcon <- makeIcon(
+  iconUrl = "https://upload.wikimedia.org/wikipedia/en/b/b9/NUS_coat_of_arms.svg",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY =16
+)
+
+nussite <- "<a href=https://nus.edu.sg/>NUS</a><br>21 Lower Kent Ridge Rd<br>Singapore 119077"
+
+my_map <- leaflet() %>% 
+  addTiles() %>%
+  addMarkers(lat=1.2966,lng=103.7764,icon=nusIcon,popup = nussite)
+my_map
+```
+

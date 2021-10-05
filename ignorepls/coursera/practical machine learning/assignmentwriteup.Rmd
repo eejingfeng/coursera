@@ -1,0 +1,80 @@
+---
+title: "Prediction Assignment Writeup"
+author: "JF Ee"
+date: "7/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Background
+
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: [](http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har) (see the section on the Weight Lifting Exercise Dataset).
+
+### Write up
+
+
+Loading of Libraries
+```{r message=FALSE, warning = FALSE}
+library(ggplot2)
+library(caret)
+library(randomForest)
+```
+
+Reading of data and EDA: 
+Data has 160 variables. Train has 19622 observations while test has 20 observations. Classe variable is currently in character type.
+```{r}
+train <- read.csv("pml-training.csv")
+test <- read.csv("pml-testing.csv")
+
+#head(train)
+#summary(train)
+dim(train)
+dim(test)
+
+
+```
+
+Cleaning data & Splitting of test and validation set:
+- Converting Classe variable to factor type
+- Removing variables with NA entries
+- Removing variables with information not useful for prediction e.g. timestamp
+- 60-40 split for training and validation set
+```{r}
+train$classe <- as.factor(train$classe)
+
+good <- complete.cases(t(train)) & complete.cases(t(test))
+good[c(1,3,4,5,6)] <- FALSE
+train <- train[,good]
+test <- test[,good]
+
+set.seed(13)
+trainset <- createDataPartition(train$classe, p=0.6, list=FALSE)
+validation <- train[-trainset,]
+train <- train[trainset,]
+```
+
+Training of RandomForest Model:
+Accuracy of training is 100%.
+```{r}
+randomforestmod <- randomForest(classe~., data=train)
+
+trainpred <- predict(randomforestmod,newdata=train)
+trainacc <- sum(trainpred == train$classe)/dim(train)[1]
+paste("Accuracy on training set =",trainacc )
+```
+
+Out of sample error is 99.73%.
+```{r}
+validpred <- predict(randomforestmod,newdata=validation)
+validacc <- sum(validpred == validation$classe)/dim(validation)[1]
+paste("Accuracy on validation set =",validacc )
+```
+
+Final Prediction:
+```{r}
+testpred <- predict(randomforestmod,newdata=test)
+paste("Classifications on test set:");testpred
+```

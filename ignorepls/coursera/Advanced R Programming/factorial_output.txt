@@ -1,0 +1,44 @@
+> test1 <- 10
+> fact_table <- c(rep(NA, test1))
+> benchmark(test1)
+Unit: microseconds
+                                  expr     min       lq      mean   median       uq     max
+   result <- Factorial_loop(occurance)   2.700   3.0005   4.18408   3.8010   4.2010  36.002
+ result <- Factorial_reduce(occurance) 256.702 264.5510 295.79196 271.1010 297.4010 543.101
+   result <- Factorial_func(occurance)   6.401   6.7020   8.04006   7.2005   8.2505  30.302
+    result <- Factorial_mem(occurance)   7.702   8.2010  10.04699   9.0015  10.1010  37.501
+ neval
+   100
+   100
+   100
+   100
+> 
+> test2 <- 100
+> fact_table <- c(rep(NA, test2))
+> benchmark(test2)
+Unit: microseconds
+                                  expr     min       lq      mean   median       uq
+   result <- Factorial_loop(occurance)   5.301   5.7005   8.05201   6.9005   8.0015
+ result <- Factorial_reduce(occurance) 616.001 639.4505 770.21091 688.4005 825.6010
+   result <- Factorial_func(occurance)  64.900  67.8505  90.21192  72.3020  85.1510
+    result <- Factorial_mem(occurance)  78.202  81.4010 101.56598  86.0010 102.0015
+      max neval
+   38.500   100
+ 1907.501   100
+  520.301   100
+  384.402   100
+> 
+> test3 <- 1000
+> fact_table <- c(rep(NA, test3))
+> benchmark(test3)
+Unit: microseconds
+                                  expr      min       lq       mean    median       uq
+   result <- Factorial_loop(occurance)   31.500   35.501   49.94006   39.4015   48.051
+ result <- Factorial_reduce(occurance) 4313.701 4671.301 5461.40111 5088.7005 5579.551
+   result <- Factorial_func(occurance) 1325.602 1474.401 1704.67697 1588.9510 1875.151
+    result <- Factorial_mem(occurance) 1497.302 1686.351 2029.71000 1825.9000 2134.501
+       max neval
+   202.900   100
+ 13439.501   100
+  2648.501   100
+ 10531.602   100

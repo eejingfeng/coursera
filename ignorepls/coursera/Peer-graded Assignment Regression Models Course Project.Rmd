@@ -1,0 +1,84 @@
+---
+title: 'Peer-graded Assignment: Regression Models Course Project'
+author: "JF Ee"
+date: "7/2/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Executive Summary
+EDA and multiple linear regression model conducted on the mtcars dataset, with mpg being the dependent variable. Boxplot shows that automatic cars has a better mpg. However, stepwise algorithm was adopted for the regression model and a three variables model (wt, qsec and am) was produced. From the coefficients, we see that generally manual cars have a higher mpg, but it is dependent on the weight and acceleration speed of the cars as well.
+
+## Exploratory Data Analysis (EDA)
+
+There are 11 variables in the dataset. By using the cor() function, we can see cyl, disp, hp, wt and carb are negatively correlated to mpg. Furthermore, we also see cyl, disp, hp and wt are strongly correlation to mpg as well.
+
+The variable am should be a factor type instead, with 0 being automatic and 1 being manual. Hence data conversion is required here.
+```{r}
+data(mtcars)
+head(mtcars)
+names(mtcars)
+summary(mtcars)
+
+paste("Correlation:");cor(mtcars$mpg,mtcars[,-1])
+
+mtcars$am <- as.factor(mtcars$am)
+levels(mtcars$am) <- c('automatic','manual')
+```
+## Box plot & T-test
+From the box plot, we can see a relationship that automatic car has a better mpg. We can test the hypothesis with a t-test. P value from the t-test is 0.001374 and hence we can reject the null hypothesis.
+
+```{r echo=FALSE}
+boxplot(mtcars$mpg ~ mtcars$am, data = mtcars, outpch = 19, ylab="mpg:miles per 
+gallon",xlab="transmission type",main="mpg vs transmission type", col="blue")
+```
+
+```{r}
+t.test(mtcars$mpg~mtcars$am,conf.level=0.95)
+```
+
+## Multiple linear regression
+Stepwise algorithm is adopted to choose the best model. We see that a three variable model is produced here, with wt, qsec and am variables. The model has a variance of 0.85. From the coefficients, we see that:
+- Every increase in weight (wt), mpg decreases by -3.9165
+- Every increase in qsec, mpg increases by 1.2259
+- Manual transmission increases mpg by 2.9358 compared to automatic tranmission
+
+```{r}
+stepmodel = step(lm(data = mtcars, mpg ~ .),trace=0,steps=10000)
+summary(stepmodel)
+```
+To further optimise the model, we can examine mpg~wt+qsec correlation with am. We see the variance increase to 0.8946 in this optimised model.
+
+```{r}
+model <- lm(mpg~ factor(am):wt + factor(am):qsec,data=mtcars)
+summary(model)
+```
+
+## Conclusion
+From the coefficients, we see that:
+- When weight increased by 1000 pounds, the mpg factor decreases by 3.1759 for automatic cars and decreases by 6.0992 for manual cars
+- Hence, as weight increases, consumers should choose manual cars.
+- As acceleration speed increases, the mpg factor increases by 0.8338 for automatic cars and 1.446 for manual cars.
+- Hence, the lower acceleration speed, holding weight constant, manual cars are more efficient.
+- Mpg is largely determined by weight, acceleration and transmission. As such, looking at the weight and acceleration of the car, then consumer can decide whether manual or automatic cars better for them.
+
+## Appendix 1: Residual check and diagnostics plot
+```{r echo=FALSE}
+par(mfrow=c(2,2))    
+plot(model)
+```
+
+## Appendix 2: Scatterplots
+```{r echo=FALSE}
+pairs(mpg ~ ., data = mtcars)
+```
+
+## Appendix 3: Density and histogram
+```{r echo=FALSE}
+par(mfrow=c(2,1))
+hist(mtcars$mpg, breaks=10, xlab="MPG", main="MPG histogram")
+plot(density(mtcars$mpg), main="kernel density", xlab="MPG")
+```

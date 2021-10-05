@@ -1,0 +1,39 @@
+---
+title: "Course Project"
+author: "JF Ee"
+date: "7/2/2021"
+output:   
+  ioslides_presentation: default
+  html_document:
+    number_sections: yes
+    toc: yes
+  slidy_presentation: default
+mode: selfcontained
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## K-means clustering with Iris dataset 
+
+This report presents the end product created through the final course project for Developing Data Products.
+
+## Data used
+
+```{r cars, echo = TRUE}
+summary(iris)
+```
+
+
+## Application overview
+
+- Different clusterings can be identified by selecting the X and Y parameters
+- Clusters can be adjusted via the Cluster Count parameter
+
+
+## Links to Application and project files
+
+- Click [here](https://jingfeng.shinyapps.io/courseproject/) to access the application.
+- Click [here](https://github.com/eejingfeng/randomstuff/blob/main/coursera/data%20product/courseproj_app.R) to access the project file on Github.
+
