@@ -4,7 +4,7 @@ author: "JF Ee"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{This is my First R Package about US FARS (Fatality Analysis Recording System)}
+  %\VignetteIndexEntry{US FARS (Fatality Analysis Recording System) R Package }
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
