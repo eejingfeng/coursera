@@ -1,3 +1,5 @@
+install.packages("testthat")
+
 library(testthat)
 library(fars)
 library(dplyr)
