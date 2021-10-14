@@ -1,6 +1,6 @@
 ---
 title: "FARS Functions"
-author: "Dmitri Brengauz"
+author: "JF Ee"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
