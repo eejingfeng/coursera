@@ -9,20 +9,12 @@ vignette: >
   \usepackage[utf8]{inputenc}     
 ---
 
-```{r, echo = FALSE, message = FALSE}
-library(fars)
-library(maps)
-library(graphics)
-```
-
-
-
 Some basic functions for working with Fars data.
 
 ## File Utilities
 To read a database compressed file intto a tible, use the `fars_read` function:
 ```{r, error=TRUE}
-#fars_read("/data/accident_2014.csv.bz2")
+fars_read("/data/accident_2014.csv.bz2")
 ```
 
 The two functions `make_filename` and `fars_read_years` are helper
@@ -37,12 +29,12 @@ months and years for each obeservation, useful for sorting data.
 Return a per-month total of accidents for that year:
 
 ```{r, warning=FALSE}
-#fars_summarize_years(c(2014,2015))
+fars_summarize_years(c(2014,2015))
 ```
 
 ###  `fars_map_state`
 ```{r warning=FALSE}
-#fars_map_state(c(1,4,5),2014)
+fars_map_state(c(1,4,5),2014)
 ```
 
 shows a plot of the accidents in Alabama, Arizona, and Arkansas in

@@ -2,21 +2,23 @@
 % Please edit documentation in R/fars.R
 \name{make_filename}
 \alias{make_filename}
-\title{This functions will generate the filename string which will be used in the fars_read function}
+\title{FARS make_filename}
 \usage{
 make_filename(year)
 }
 \arguments{
-\item{year}{Could be one number or a list of numbers.}
+\item{year}{A string or integer representation of a year.}
 }
 \value{
-The return of this function could be a single string or a list, depends of its inputs.
+A string matching a valid file name for the dataset, e.g.,
+    for 2015, \code{make_filename(2015)} will return
+    "./data/accident_2015.csv.bz2"
 }
 \description{
-This functions will generate the filename string which will be used in the fars_read function
+From the year, creates a valid file name to work with FARS
+dataset.
 }
 \examples{
-\dontrun{make_filename(year = 2015)}
-\dontrun{make_filename(year = c(2013,2014))}
-
+make_filename(2014)
+make_filename("2015")
 }

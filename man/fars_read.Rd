@@ -2,24 +2,18 @@
 % Please edit documentation in R/fars.R
 \name{fars_read}
 \alias{fars_read}
-\title{Week 2 - Assignment}
+\title{FARS Read Funcion}
 \usage{
 fars_read(filename)
 }
 \arguments{
-\item{filename}{Is a character string which represents the archive's name.}
+\item{filename}{String contianing the name and relative path to a
+file.}
 }
 \value{
-This functions returns a data frame of the imported data in case of an invalid name it will return
-        a message error "file XXXX does not exist".
+A "tbl_df" tibble object.
 }
 \description{
-This functions will read just only one archive. The input of this function is the filename to be
-imported. These archive has data of the US National Highway Traffic Safety Administration's, and
-this is a csv file. Keep in mind that the filename will be generate by the make_filename function.
+Read CSV files into a tibble.  Using \code{\link[dplyr]{tbl_df}}
+read a file supported by that function.
 }
-\examples{
-\dontrun{fars_read(filename = "accident_2013.csv.bz2")}
-
-}
-\keyword{coursera}

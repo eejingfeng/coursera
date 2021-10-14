@@ -1,7 +1,11 @@
 Package: fars
 Title: Fatality Analysis Reporting System Functions
 Version: 0.0.0.9000
+<<<<<<< Updated upstream
 Author: JF
+=======
+Authors@R: person("Dmitri", "Brengauz", email = "dmitri@momus.net", role = c("aut", "cre"))
+>>>>>>> Stashed changes
 Description: Functions to read data from the Fatality Analysis Reporting System,
              provide a summary, and map accidents by state.    
 Depends: R (>= 3.3.3)
@@ -14,3 +18,4 @@ Suggests: knitr,
     rmarkdown,
     testthat
 VignetteBuilder: knitr
+

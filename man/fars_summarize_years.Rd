@@ -2,25 +2,26 @@
 % Please edit documentation in R/fars.R
 \name{fars_summarize_years}
 \alias{fars_summarize_years}
-\title{This function perform the summarization which consist in the lines number of each dataset, and
-bind the separated dataset into one data.frame (using bind_rows). Later transform rows into column
-by the spread function. As a result, years in columns rows as months.}
+\title{FARS Summarize Years}
 \usage{
 fars_summarize_years(years)
 }
 \arguments{
-\item{years}{Could be a single year or a list pf years.}
+\item{years}{Vector of either intigers or strings correspondig to
+years for which the data set is available.}
 }
 \value{
-The return will be a data.frame with years in columns and months in rows. Each row represent
-        the number of accidents.
+A tibble of 12 rows (one per month) a column for month
+    number, and as many year columns as were passed to the
+    function.
 }
 \description{
-This function perform the summarization which consist in the lines number of each dataset, and
-bind the separated dataset into one data.frame (using bind_rows). Later transform rows into column
-by the spread function. As a result, years in columns rows as months.
+Produce a summary of the number of accidents each month in the given years.
 }
-\examples{
-\dontrun{fars_summarize_years(years = list(2013,2014,2015))}
+\details{
+For each year passed into the function, create a tibble listing
+    the number of accidents per month for that year.
 
+Errors: An invalid year will produce an "invalid year" warning,
+    and result in a empty column for that year.
 }

@@ -2,24 +2,25 @@
 % Please edit documentation in R/fars.R
 \name{fars_read_years}
 \alias{fars_read_years}
-\title{This functions will import several years by the using of the fars_read function many times. There are some
-data manipulation as a creation of a column called year (using mutate) and a selection of two variable per year.}
+\title{FARS Read Years}
 \usage{
 fars_read_years(years)
 }
 \arguments{
-\item{years}{Could be a single year or a list of years.}
+\item{years}{Vector of either intigers or strings correspondig to
+years for which the data set is available.}
 }
 \value{
-The results of this function will be a list with only the columns MONTH and year, as you can
-        confirm watching the select(MONTH, year). If any year in the list was invalid the function show
-        a warning message.
+A list of FARS tibbles.
 }
 \description{
-This functions will import several years by the using of the fars_read function many times. There are some
-data manipulation as a creation of a column called year (using mutate) and a selection of two variable per year.
+Create a list of year tibbles.
+}
+\details{
+For each year passed into the function, create an tibble in a list
+that contains just the years and months from the dataset for those
+years.
 }
 \examples{
-\dontrun{fars_read_years(years = list(2013,2014,2015))}
-
+fars_read_years(c("2014", 2015))
 }

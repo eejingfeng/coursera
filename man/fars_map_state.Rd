@@ -2,26 +2,24 @@
 % Please edit documentation in R/fars.R
 \name{fars_map_state}
 \alias{fars_map_state}
-\title{This function perform the data visualization, for each set of state and years will be displayed the state and
-points, where points represents the accidents in this state during the given years.}
+\title{FARS State Maps}
 \usage{
 fars_map_state(state.num, year)
 }
 \arguments{
-\item{state.num}{The operator must know the code of the state to generate the desired map.}
+\item{state.num}{Integer corresponding to the number of the state
+in the data set.}
 
-\item{year}{Could be a single year or a list of years.}
+\item{year}{Either string or integer representation of the year
+for which the map is to be drawn.}
 }
 \value{
-The return will be a map with point ploted representing accidents. If the state code is not correct
-        an error will be shown saying "invalid STATE number".
+NULL; side effect: plots the map of the state.
 }
 \description{
-This function perform the data visualization, for each set of state and years will be displayed the state and
-points, where points represents the accidents in this state during the given years.
+Map of a state with plotting all accidents for the given year.
 }
-\examples{
-\dontrun{fars_map_state(state.num = 1, year = 2013)}
-\dontrun{fars_map_state(state.num = 56, year = 2015)}
-
+\details{
+For each year and state number passed into the function, create a
+    map of the state showing the location accidents in that year.
 }
